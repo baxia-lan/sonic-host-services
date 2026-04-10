@@ -1,0 +1,26 @@
+"""sonic-host-services Python wheel — migrated from rules/sonic-host-services.mk."""
+
+load("//rules/bazel/wheel:wheel.bzl", "sonic_wheel")
+
+package(default_visibility = ["//visibility:public"])
+
+sonic_wheel(
+    name = "sonic_host_services_wheel",
+    distribution = "sonic-host-services",
+    version = "1.0",
+    deps = [
+        "//src/sonic-utilities:sonic_utilities_wheel",
+    ],
+    summary = "SONiC host services for managing system-level operations.",
+    visibility = ["//visibility:public"],
+)
+
+# sonic-host-services-data deb (rules/sonic-host-services-data.mk)
+filegroup(
+    name = "sonic_host_services_data",
+    srcs = glob(
+        ["data/**"],
+        allow_empty = True,
+    ),
+    visibility = ["//visibility:public"],
+)
